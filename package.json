@@ -1,0 +1,30 @@
+{
+  "name": "mycypress",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "clean:reports": "rm -R -f cypress/reports && mkdir cypress\\reports\\mochareports",
+    "pretest": "yarn run clean:reports",
+    "scripts": "cypress run",
+    "combine-reports": "mochawesome-merge cypress/reports/mocha/*.json > cypress/reports/mochareports/report.json",
+    "generate-report": "marge cypress/reports/mochareports/report.json --reportFilename report --reportDir cypress/reports/mochareports",
+    "mochawesome": "yarn run scripts || yarn run combine-reports && yarn run generate-report",
+    "smoke": "yarn run clean:reports && cypress run --headless --browser chrome --spec 'cypress/integration/**/**/Smoke/**.spec.js' --reporter junit --reporter-options mochaFile=cypress/reports/junit-[hash].xml",
+    "test": "yarn run clean:reports && cypress run --reporter junit --reporter-options mochaFile=cypress/reports/junit-[hash].xml"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "cypress": "^5.2.0",
+    "cypress-multi-reporters": "^1.2.4",
+    "cypress-wait-until": "^1.7.1",
+    "cypress-xpath": "^1.6.0",
+    "del-cli": "^3.0.0",
+    "mkdirp": "^1.0.3",
+    "mocha": "^7.0.1",
+    "mochawesome": "^4.0.1",
+    "mochawesome-merge": "^4.0.1",
+    "mochawesome-report-generator": "^4.0.1",
+    "rimraf": "^3.0.2"
+  }
+}

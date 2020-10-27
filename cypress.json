@@ -1,0 +1,28 @@
+{
+  "defaultCommandTimeout": 30000,
+  "pageLoadTimeout": 60000,
+  "reporter": "cypress-multi-reporters",
+  "report:copyScreenshots": "cp -r cypress/screenshots cypress/reports/mocha/html/screenshots",
+  "reporterOptions": {
+    "reporterEnabled": "mochawesome",
+    "mochawesomeReporterOptions": {
+      "reportDir": "cypress/reports/mocha",
+      "quite": true,
+      "overwrite": false,
+      "html": false,
+      "json": true
+    }
+  },
+  "retries": {
+    "runMode": 1,
+    "openMode": 0
+  },
+  "env": {
+    "test": "http://automationpractice.com/index.php"
+    
+  },
+
+  "experimentalFetchPolyfill": true,
+  "video": false,
+  "numTestsKeptInMemory": 1
+}
